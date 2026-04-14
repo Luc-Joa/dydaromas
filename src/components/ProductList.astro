@@ -3,16 +3,9 @@
  * ProductList.astro
  *
  * Simula la lógica de obtener datos desde un Google Sheet publicado como JSON.
- * En producción, reemplazá DATA_URL con la URL real de tu Google Sheet:
+ * En producción reemplazá el import por un fetch a tu Sheet:
  *
- *   const DATA_URL =
- *     'https://sheets.googleapis.com/v4/spreadsheets/{ID}/values/{RANGE}?key={API_KEY}';
- *
- * O bien usando la exportación CSV pública:
- *   const DATA_URL =
- *     'https://docs.google.com/spreadsheets/d/{ID}/gviz/tq?tqx=out:json';
- *
- * Por ahora usamos el archivo JSON local en /public/data/products.json
+ *   const res = await fetch('https://docs.google.com/spreadsheets/d/{ID}/gviz/tq?tqx=out:json');
  */
 
 interface Producto {
@@ -26,19 +19,10 @@ interface Categoria {
   productos: Producto[];
 }
 
-// ── Simulated fetch (como si viniera de Google Sheets) ──────────────────────
-const DATA_URL = '/data/products.json';
-
 let categorias: Categoria[] = [];
 let fetchError = false;
 
 try {
-  // En SSR/build time, Astro puede hacer fetch a assets locales
-  const baseUrl = import.meta.env.PROD
-    ? 'https://localhost' // reemplazá con tu dominio en producción
-    : 'http://localhost:4321';
-
-  // Para el build/dev local usamos import directo (más confiable en Astro static)
   const raw = await import('../../public/data/products.json');
   categorias = raw.default as Categoria[];
 } catch (e) {
@@ -46,65 +30,52 @@ try {
   fetchError = true;
 }
 
-// Formateador de precios ARS
 const formatPrecio = (n: number) =>
-  new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'ARS',
-    minimumFractionDigits: 0,
-  }).format(n);
+  new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(n);
 ---
 
-<section id="catalogo" class="px-4 py-8">
-  <!-- Título de sección -->
-  <div class="text-center mb-8">
-    <span
-      class="inline-block bg-brand-orange/20 text-brand-orange text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-3 border border-brand-orange/30"
-    >
-      Lista de Precios
-    </span>
-    <h2 class="text-2xl font-bold text-white">
-      Catálogo Mayorista
-    </h2>
-    <p class="text-blue-200 text-sm mt-1">
-      Precios vigentes · Actualizados periódicamente
-    </p>
-  </div>
+<section id="catalogo" class="px-6 py-12">
+  <h2 class="text-primary text-2xl font-extrabold mb-8 text-center font-headline">
+    Lista de Precios Mayoristas ✨
+  </h2>
 
   {fetchError && (
-    <div class="bg-red-500/20 border border-red-400/40 rounded-2xl p-4 text-center text-red-200 text-sm">
+    <div class="bg-error/20 border border-error/40 rounded-lg p-4 text-center text-error text-sm mb-6">
       No se pudieron cargar los productos. Contactanos por WhatsApp.
     </div>
   )}
 
-  {!fetchError && categorias.length === 0 && (
-    <div class="text-center text-blue-200 py-8">Cargando catálogo...</div>
-  )}
-
-  <!-- Categorías -->
-  <div class="space-y-6 max-w-lg mx-auto">
+  <!-- Grid de categorías tipo tarjeta de producto -->
+  <div class="space-y-6 max-w-lg mx-auto mb-10">
     {categorias.map((cat) => (
-      <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-card">
+      <div class="bg-surface-container rounded-lg overflow-hidden shadow-md">
+
         <!-- Header de categoría -->
-        <div class="flex items-center gap-3 px-5 py-3.5 bg-brand-orange/15 border-b border-white/10">
+        <div class="flex items-center gap-3 px-5 py-3.5
+                    bg-surface-container-high border-b border-outline-variant">
           <span class="text-2xl" aria-hidden="true">{cat.emoji}</span>
-          <h3 class="font-bold text-white text-lg tracking-tight">{cat.categoria}</h3>
-          <span class="ml-auto bg-brand-orange/25 text-brand-orange text-xs font-semibold px-2.5 py-0.5 rounded-full border border-brand-orange/30">
-            {cat.productos.length} productos
+          <h3 class="font-bold text-on-surface text-lg font-headline flex-1">{cat.categoria}</h3>
+          <span class="bg-primary/20 text-primary text-xs font-semibold
+                       px-2.5 py-0.5 rounded-full border border-primary/30">
+            {cat.productos.length}
           </span>
         </div>
 
         <!-- Lista de productos -->
-        <ul class="divide-y divide-white/5">
+        <ul class="divide-y divide-outline-variant/50">
           {cat.productos.map((prod, i) => (
-            <li class="flex items-center justify-between px-5 py-3 gap-3 hover:bg-white/5 transition-colors">
+            <li class="flex items-center justify-between px-5 py-3 gap-3
+                       hover:bg-surface-container-high/60 transition-colors">
               <div class="flex items-center gap-2.5 min-w-0">
-                <span class="flex-shrink-0 w-5 h-5 rounded-full bg-brand-orange/20 border border-brand-orange/30 text-brand-orange text-[10px] font-bold flex items-center justify-center">
+                <span class="flex-shrink-0 w-5 h-5 rounded-full
+                             bg-primary/15 border border-primary/25
+                             text-primary text-[10px] font-bold
+                             flex items-center justify-center tabular-nums">
                   {i + 1}
                 </span>
-                <span class="text-blue-100 text-sm leading-snug truncate">{prod.nombre}</span>
+                <span class="text-on-surface-variant text-sm leading-snug truncate">{prod.nombre}</span>
               </div>
-              <span class="flex-shrink-0 text-brand-orange font-bold text-base tabular-nums">
+              <span class="flex-shrink-0 text-primary font-bold text-base tabular-nums">
                 {formatPrecio(prod.precio)}
               </span>
             </li>
@@ -114,8 +85,18 @@ const formatPrecio = (n: number) =>
     ))}
   </div>
 
-  <!-- Nota al pie del catálogo -->
-  <p class="text-center text-blue-300 text-xs mt-6 max-w-xs mx-auto">
-    * Precios mayoristas. IVA incluido. Sujetos a cambio sin previo aviso.
+  <!-- Botón descargar PDF (placeholder) -->
+  <a
+    href="#"
+    class="block w-full py-5 px-6 max-w-lg mx-auto
+           bg-surface-container-highest border border-outline-variant
+           text-primary font-bold text-center rounded-lg shadow-lg
+           active:scale-95 transition-transform"
+  >
+    📑 Descargar Lista de Precios Completa (PDF)
+  </a>
+
+  <p class="text-center text-on-surface-variant/50 text-xs mt-4 max-w-xs mx-auto">
+    * Precios mayoristas. Sujetos a cambio sin previo aviso.
   </p>
 </section>
