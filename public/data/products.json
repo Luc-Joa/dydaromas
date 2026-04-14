@@ -1,0 +1,56 @@
+[
+  {
+    "categoria": "Velas",
+    "emoji": "🕯️",
+    "productos": [
+      { "nombre": "Vela Aromática Chica - varios aromas", "precio": 3500 },
+      { "nombre": "Vela Aromática Mediana - varios aromas", "precio": 5200 },
+      { "nombre": "Vela Aromática Grande - varios aromas", "precio": 7800 },
+      { "nombre": "Vela en Tarro de Vidrio 200g", "precio": 6500 },
+      { "nombre": "Vela Decorativa con Cristales", "precio": 9200 }
+    ]
+  },
+  {
+    "categoria": "Sahumerios",
+    "emoji": "🌿",
+    "productos": [
+      { "nombre": "Sahumerio Saphirus x20 unid - Lavanda", "precio": 2800 },
+      { "nombre": "Sahumerio Saphirus x20 unid - Rosa", "precio": 2800 },
+      { "nombre": "Sahumerio Saphirus x20 unid - Sándalo", "precio": 2800 },
+      { "nombre": "Sahumerio Premium x15 unid - Coco Vainilla", "precio": 3400 },
+      { "nombre": "Conito Sahumerio x10 unid", "precio": 3100 }
+    ]
+  },
+  {
+    "categoria": "Difusores",
+    "emoji": "✨",
+    "productos": [
+      { "nombre": "Difusor de Ambiente 120ml - Lavanda", "precio": 8900 },
+      { "nombre": "Difusor de Ambiente 120ml - Jazmin", "precio": 8900 },
+      { "nombre": "Difusor de Ambiente 250ml - Surtido", "precio": 12500 },
+      { "nombre": "Difusor Eléctrico USB + 1 esencia", "precio": 15000 },
+      { "nombre": "Recarga Difusor 120ml", "precio": 5500 }
+    ]
+  },
+  {
+    "categoria": "Esencias & Aceites",
+    "emoji": "💧",
+    "productos": [
+      { "nombre": "Esencia Concentrada 30ml - surtida", "precio": 2200 },
+      { "nombre": "Aceite Esencial Puro 10ml", "precio": 4100 },
+      { "nombre": "Kit 3 Esencias 30ml a elección", "precio": 5900 },
+      { "nombre": "Spray Aromatizador de Ambientes 200ml", "precio": 4800 },
+      { "nombre": "Roll-On Perfume de Bolso 10ml", "precio": 3200 }
+    ]
+  },
+  {
+    "categoria": "Accesorios",
+    "emoji": "🪔",
+    "productos": [
+      { "nombre": "Portasahumerio de Madera", "precio": 1800 },
+      { "nombre": "Quemador de Cerámica", "precio": 4500 },
+      { "nombre": "Piedras Volcánicas x100g", "precio": 2600 },
+      { "nombre": "Set Gift Box Aromas - para regalo", "precio": 18500 }
+    ]
+  }
+]

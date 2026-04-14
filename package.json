@@ -1,0 +1,18 @@
+{
+  "name": "dydaromas",
+  "version": "1.0.0",
+  "description": "D y D Aromas - Landing Page Mayorista Saphirus",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "@lucide/astro": "^1.8.0",
+    "astro": "^6.1.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
