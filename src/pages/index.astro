@@ -198,7 +198,7 @@ const year = new Date().getFullYear();
       <!-- ── CONTACTO Y UBICACIÓN ── -->
       <section class="px-6 py-12 bg-surface-container-lowest" id="contacto">
         <h2 class="text-primary text-2xl font-bold mb-8 text-center font-headline">
-          Ubicación y Datos de Contacto 📍
+          Ubicación y Contacto 📍
         </h2>
 
         <div class="space-y-6 mb-8 max-w-lg mx-auto">
@@ -306,7 +306,6 @@ const year = new Date().getFullYear();
 
     <!-- ════════════════════════════════════════
          AUDIO PLAYER STICKY BOTTOM
-         preload="none" — no consume ancho de banda hasta que el usuario lo inicia
     ════════════════════════════════════════ -->
     <div id="audio-bar"
          class="fixed bottom-20 left-0 right-0 z-40 px-4 transition-all duration-500
@@ -366,7 +365,7 @@ const year = new Date().getFullYear();
           </button>
         </div>
 
-        <audio id="welcome-audio" class="hidden" preload="none">
+        <audio id="welcome-audio" class="hidden" preload="auto">
           <source src="/audio/bienvenida.mp3" type="audio/mpeg" />
         </audio>
       </div>
