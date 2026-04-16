@@ -1,4 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#00529b"/>
-  <text x="16" y="22" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f18a22" text-anchor="middle">D</text>
+  <!-- Fondo azul oscuro con esquinas redondeadas -->
+  <rect width="32" height="32" rx="8" fill="#0a2a5e"/>
+  <!-- Ala superior izquierda -->
+  <path d="M16 14 C12 8, 4 7, 4 13 C4 18, 10 19, 16 17 Z" fill="#ffb77d"/>
+  <!-- Ala superior derecha -->
+  <path d="M16 14 C20 8, 28 7, 28 13 C28 18, 22 19, 16 17 Z" fill="#ffb77d"/>
+  <!-- Ala inferior izquierda -->
+  <path d="M16 17 C11 18, 5 22, 6 26 C7 29, 12 27, 16 22 Z" fill="#ff9a4d"/>
+  <!-- Ala inferior derecha -->
+  <path d="M16 17 C21 18, 27 22, 26 26 C25 29, 20 27, 16 22 Z" fill="#ff9a4d"/>
+  <!-- Cuerpo -->
+  <ellipse cx="16" cy="18" rx="1.2" ry="5" fill="#0a2a5e"/>
+  <!-- Antenas -->
+  <line x1="16" y1="13" x2="12" y2="8" stroke="#ffb77d" stroke-width="1" stroke-linecap="round"/>
+  <line x1="16" y1="13" x2="20" y2="8" stroke="#ffb77d" stroke-width="1" stroke-linecap="round"/>
+  <circle cx="12" cy="8" r="1" fill="#ffb77d"/>
+  <circle cx="20" cy="8" r="1" fill="#ffb77d"/>
 </svg>
